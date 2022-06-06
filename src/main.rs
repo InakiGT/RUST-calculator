@@ -1,5 +1,15 @@
 use regex::Regex;
 
+fn convert(caps: Option<regex::Captures>) -> (i32, i32, &str) {
+    let caps = caps.unwrap();
+
+    let cap_expression : &str = caps.get(0).unwrap().as_str();
+    let left_value : i32 = caps.get(1).unwrap().as_str().parse().unwrap();
+    let right_value : i32 = caps.get(2).unwrap().as_str().parse().unwrap();
+
+    return (left_value, right_value, cap_expression);
+}
+
 fn main() {
     let mut expression : String = String::new();
 
@@ -19,12 +29,8 @@ fn main() {
         if caps.is_none() {
             break;
         }
-        
-        let caps = caps.unwrap();
 
-        let cap_expression : &str = caps.get(0).unwrap().as_str();
-        let left_value : i32 = caps.get(1).unwrap().as_str().parse().unwrap();
-        let right_value : i32 = caps.get(2).unwrap().as_str().parse().unwrap(); // En ambos casos se convierte el string a i32, pero primero se debe pasar a &str y de ahí ya parsear a 132
+        let (left_value, right_value, cap_expression) = convert(caps);
         
         let product = left_value * right_value;
         
@@ -37,12 +43,8 @@ fn main() {
         if caps.is_none() {
             break;
         }
-        
-        let caps = caps.unwrap();
 
-        let cap_expression : &str = caps.get(0).unwrap().as_str();
-        let left_value : i32 = caps.get(1).unwrap().as_str().parse().unwrap();
-        let right_value : i32 = caps.get(2).unwrap().as_str().parse().unwrap(); 
+        let (left_value, right_value, cap_expression) = convert(caps);
         
         let division = left_value / right_value;
         
@@ -55,12 +57,8 @@ fn main() {
         if caps.is_none() {
             break;
         }
-        
-        let caps = caps.unwrap();
 
-        let cap_expression : &str = caps.get(0).unwrap().as_str();
-        let left_value : i32 = caps.get(1).unwrap().as_str().parse().unwrap();
-        let right_value : i32 = caps.get(2).unwrap().as_str().parse().unwrap(); 
+        let (left_value, right_value, cap_expression) = convert(caps);
         
         let addition = left_value + right_value;
         
@@ -73,12 +71,8 @@ fn main() {
         if caps.is_none() {
             break;
         }
-        
-        let caps = caps.unwrap();
 
-        let cap_expression : &str = caps.get(0).unwrap().as_str();
-        let left_value : i32 = caps.get(1).unwrap().as_str().parse().unwrap();
-        let right_value : i32 = caps.get(2).unwrap().as_str().parse().unwrap(); 
+        let (left_value, right_value, cap_expression) = convert(caps);
         
         let subtraction = left_value - right_value;
         
